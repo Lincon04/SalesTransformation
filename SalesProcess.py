@@ -41,20 +41,22 @@ class ConvertSales:
         print("Terminou em: %s" % time.ctime())
 
     def execute(self):
+        self.process()
+
         # queue = q.Queue()
-        # thread = threading.Thread(target=self.process, args=(queue,))
-        # thread.start()
+        thread = threading.Thread(target=self.process)
+        thread.start()
 
         # Espera a thread terminar de executar
-        # thread.join()
+        thread.join()
+        self.salve_excel()
 
         # Acessa o objeto retornado pela função
         # sales_df = queue.get()
 
         # if sales_df is None:
         #     raise Exception('A operação não foi concluída com sucesso')
-        self.process()
-        self.salve_excel()
+
 
     def salve_excel(self):
         print("Começou em: %s" % time.ctime())
